@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+<Appenders>
+    <Console name="Log2Console" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%X{iteration}] [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+    <File name="Log2Declarative" fileName="logs/Declarative.log">
+        <MarkerFilter marker="Declarative" onMatch="ACCEPT" onMismatch="DENY"/>
+        <PatternLayout>
+            <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+        </PatternLayout>
+    </File>
+    <File name="Log2Question" fileName="logs/Question.log">
+        <MarkerFilter marker="Question" onMatch="ACCEPT" onMismatch="DENY"/>
+        <PatternLayout>
+            <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+        </PatternLayout>
+    </File>
+    <File name="Log2Nomark" fileName="logs/NOmark.log">
+        <NoMarkerFilter onMatch="ACCEPT" onMismatch="DENY"/>
+        <PatternLayout>
+            <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+        </PatternLayout>
+    </File>
+    <File name="Log2Gyorfipal" fileName="logs/GyorfiPali.log">
+        <NoMarkerFilter onMatch="ACCEPT" onMismatch="DENY"/>
+        <PatternLayout>
+            <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+        </PatternLayout>
+    </File>
+</Appenders>
+    <Loggers>
+        <Root level="all">
+            <AppenderRef ref="Log2Declarative">
+                <TimeFilter start="20:00:00" end="05:00:00" onMatch="Deny" onMismatch="ACCEPT"/>
+            </AppenderRef>
+            <AppenderRef ref="Log2Question"/>
+            <AppenderRef ref="Log2Nomark"/>
+            <AppenderRef ref="Log2Gyorfipal">
+                <TimeFilter start="20:00:00" end="05:00:00" onMatch="ACCEPT" onMismatch="DENY"/>
+            </AppenderRef>
+            <AppenderRef ref="Log2Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
+
+
+
+
+
+
+
